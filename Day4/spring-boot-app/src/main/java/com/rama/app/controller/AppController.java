@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AppController {	
-	    @RequestMapping("/")
+	    @RequestMapping("/hello")
 	    public String index() {
 	        return "Hello from controller";
 	    }
