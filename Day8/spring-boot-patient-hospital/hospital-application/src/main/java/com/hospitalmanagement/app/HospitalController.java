@@ -17,8 +17,8 @@ public class HospitalController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private HashMap<String,Hospital> hospitalMap = new HashMap<>();
-    private HashMap<String, Patient> patientMap = new HashMap<>();
+    private HashMap<String,Hospital> hospitalMap = new HashMap<String,Hospital>();
+    private HashMap<String, Patient> patientMap = new HashMap<String,Patient>();
 
     @GetMapping("/get/hospital")
     public Hospital getHospital(@RequestParam String hospId){
