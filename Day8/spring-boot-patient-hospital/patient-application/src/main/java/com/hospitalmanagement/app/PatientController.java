@@ -11,10 +11,9 @@ public class PatientController {
     @Autowired
     private RestTemplate restTemplate;
 
-
     private HashMap<String, Patient> patientHashMap = new HashMap<>();
 
-    @GetMapping("/patient/get")
+    @GetMapping("/get/patient")
     public Patient getPatient(@RequestParam String patient_id) {
         Patient patient = patientHashMap.get(patient_id);
         if (patient == null) {
@@ -25,21 +24,21 @@ public class PatientController {
         }
     }
 
-    @DeleteMapping("/patient/delete")
+    @DeleteMapping("/delete/patient")
     public String deletePatient(@RequestParam String patientId) {
         patientHashMap.remove(patientId);
         return "Deleted";
 
     }
 
-    @PostMapping("/patient/save")
+    @PostMapping("/save/patient")
     public Patient savePatient(@RequestBody Patient patient) {
         String patientId = patient.getPatientId();
         patientHashMap.put(patientId, patient);
         return patient;
     }
 
-    @PutMapping("/patient/update")
+    @PutMapping("/update/patient")
     public Patient updatePatient(@RequestParam String patient_id, @RequestParam String disease) {
         Patient patient = patientHashMap.get(patient_id);
         if (patient == null) {

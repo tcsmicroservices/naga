@@ -1,78 +1,51 @@
 package com.hospitalmanagement.app;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class HospitalController {
 
-    @Autowired
-    private RestTemplate restTemplate;
-
-    private HashMap<String,Hospital> hospitalMap = new HashMap<String,Hospital>();
-    private HashMap<String, Patient> patientMap = new HashMap<String,Patient>();
+    public Map<String,Hospital> hospitalMap = new HashMap<String,Hospital>();
+    List<Patient> patients = new ArrayList<>();
 
     @GetMapping("/get/hospital")
-    public Hospital getHospital(@RequestParam String hospId){
-        Hospital hospital = hospitalMap.get(hospId);
-        if(hospital == null){
-            ResponseEntity<Patient> patient = restTemplate.exchange("http://localhost:8082/patient/get/?patient_id=p1", HttpMethod.GET,null,Patient.class);
-            ArrayList<Patient> patientList = new ArrayList<Patient>();
-            patientList.add(patient.getBody());
-            Hospital test = new Hospital("Capital", "vijayawada", "CodeC", patientList);
-            return test;
-
-        }else{
+    public Hospital getPatient(@RequestParam String name){
+        Hospital result= hospitalMap.get(name);
+        if (result == null) {
+            Hospital hospital= new Hospital("Hos1","add1","id1", null);
             return hospital;
-        }
-
+        }else
+            return result;
     }
-
-    @PostMapping("/save/hospital")
-    public Hospital saveHospital(@RequestBody Hospital hospital){
-        String hospitalId = hospital.getHospId();
-        HttpHeaders header = new HttpHeaders();
-        header.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-
-        ResponseEntity<Patient> patient = restTemplate.exchange("http://localhost:8082/patient/save", HttpMethod.POST,null,Patient.class);
-        hospital.getPatientList();
-        hospitalMap.put(hospitalId,hospital);
+    @PostMapping("save/hospital")
+    public Hospital SavePatient(@RequestBody Hospital hospital){
+        String name= hospital.getHospitalName();
+        hospitalMap.put(name,hospital);
         return hospital;
     }
-
-    @PutMapping("/update/hospital")
-    public Hospital updateHospital(@RequestParam String hospId,@RequestParam String address){
-        Hospital hospital = hospitalMap.get(hospId);
-        if(hospital == null){
-            ResponseEntity<Patient> patient = restTemplate.exchange("http://localhost:8082/patient/update", HttpMethod.PUT,null,Patient.class);
-            ArrayList<Patient> patientList = new ArrayList<Patient>();
-            patientList.add(patient.getBody());
-            Hospital test = new Hospital("apollo", hospId, address, patientList);
-            hospitalMap.put(hospId,test);
-            return test;
-        }else{
+    @PutMapping("update/hospital")
+    public Hospital updatePatient(@RequestParam String hospitalName,@RequestParam String address){
+        Hospital result= hospitalMap.get(hospitalName);
+        if (result == null) {
+            Hospital hospital= new Hospital(hospitalName,"ABC","123",null);
             hospital.setAddress(address);
-            hospitalMap.put(hospId,hospital);
+            hospitalMap.put(hospitalName,hospital);
             return hospital;
+        }else {
+            result.setAddress(address);
+            hospitalMap.put(hospitalName, result);
+            return result;
         }
 
     }
-    @DeleteMapping("/delete/hospital")
-    public String deleteHospital(@RequestParam String hospId) {
-        hospitalMap.remove(hospId);
-        HttpHeaders header = new HttpHeaders();
-        header.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<String> res = new HttpEntity<String>(header);
-        String result = restTemplate.exchange("http://localhost:8082/patient/delete?patient_id=p1",HttpMethod.DELETE,res,String.class).getBody();
-        return "Deleted Hospital "+ result;
+    @DeleteMapping("remove/hospital")
+    public String deletePatient(@RequestParam String name){
+        hospitalMap.remove(name);
+        return name;
     }
 
 

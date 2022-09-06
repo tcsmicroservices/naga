@@ -4,30 +4,32 @@ package com.hospitalmanagement.app;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Hospital {
     String hospitalName;
     String address;
     String hospId;
-    ArrayList<Patient> patientList= new ArrayList<>();
+
+    List<Patient> patients;
 
     public Hospital() {
     }
-    public Hospital(String hospitalName, String address, String hospId, ArrayList<Patient> patientList)
+    public Hospital(String hospitalName, String address, String hospId, List<Patient> patients)
     {
         this.hospitalName=hospitalName;
         this.address=address;
         this.hospId =hospId;
-        this.patientList=patientList;
+        this.patients=patients;
     }
 
-    public ArrayList<Patient> getPatientList() {
-        return patientList;
+    public List<Patient> getPatientList() {
+        return patients;
     }
 
-    public void setPatientList(ArrayList<Patient> patientList) {
-        this.patientList = patientList;
+    public void setPatientList(List<Patient> patients) {
+        this.patients = patients;
     }
 
 
