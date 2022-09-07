@@ -16,8 +16,8 @@ public class HosSecurity extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.POST, "/patient/bookappointment").hasAnyRole("PATIENT","ADMIN")
                 .antMatchers(HttpMethod.GET, "/doctor/appointments").hasAnyRole("DOCTOR","ADMIN")
                 .antMatchers(HttpMethod.GET, "/patient/myappointment").hasAnyRole("PATIENT","ADMIN")
-                .antMatchers(HttpMethod.POST, "/prescription/saveprescription").hasAnyRole("DOCTOR","ADMIN")
-                .antMatchers(HttpMethod.GET, "/prescription/viewprescription").hasAnyRole("DOCTOR","PATIENT","ADMIN").and().csrf().disable().headers()
+                .antMatchers(HttpMethod.POST, "/prescription/save").hasAnyRole("DOCTOR","ADMIN")
+                .antMatchers(HttpMethod.GET, "/prescription/view").hasAnyRole("DOCTOR","PATIENT","ADMIN").and().csrf().disable().headers()
                 .frameOptions().disable();
     }
 

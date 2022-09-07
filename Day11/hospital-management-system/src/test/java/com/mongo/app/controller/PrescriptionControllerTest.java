@@ -32,7 +32,7 @@ public class PrescriptionControllerTest {
         Prescription dummy = new Prescription() ;
         dummy.setPrescriptionId(1);
         dummy.setAppointmentId(1);
-        dummy.setDescription("perscription1");
+        dummy.setDescription("prescription1");
         dummy.setPatientName("pat1");
         dummy.setDoctorName("doc1");
         prescriptions.add(dummy);

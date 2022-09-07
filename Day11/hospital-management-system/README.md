@@ -15,7 +15,9 @@ docker-compose -f docker-compose-mongo.yml down -d
 
 ...
 curl --location --request POST 'localhost:8083/patient/bookappointment' \
+--header 'Authorization: Basic dXNlcjEyMzpwYXNzd29yZA==' \
 --header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=CD5B2A8BF6E2B9A28B0869010DB260D4' \
 --data-raw '{
 "appointmentId":"1",
 "patientName":"pat1",
@@ -28,14 +30,19 @@ curl --location --request POST 'localhost:8083/patient/bookappointment' \
 /patient/myappointment
 
 ...
-curl --location --request GET 'localhost:8083/patient/myappointments?patientName=pat1'
+curl --location --request GET 'localhost:8083/patient/myappointments?patientName=pat1' \
+--header 'Authorization: Basic dXNlcjEyMzpwYXNzd29yZA==' \
+--header 'Cookie: JSESSIONID=CD5B2A8BF6E2B9A28B0869010DB260D4'
 ...
 
 /prescription/save
 
 ...
+
 curl --location --request POST 'localhost:8083/prescription/save' \
+--header 'Authorization: Basic YWRtaW4xMjM6cGFzc3dvcmQ=' \
 --header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=CD5B2A8BF6E2B9A28B0869010DB260D4' \
 --data-raw '{
 "prescriptionId":"1",
 "appointmentId":"1",
@@ -57,3 +64,6 @@ curl --location --request GET 'localhost:8083/doctor/appointments?doctorName=doc
 
 # swagger
 http://localhost:8083/swagger-ui.html
+
+# code coverage
+class 100%  Method 81%  Line 86%

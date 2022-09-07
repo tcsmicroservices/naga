@@ -37,7 +37,7 @@ public class PatientControllerTest {
         Appointment dummyAppointment = new Appointment(1,"pat1","doc1","7 Sept", new Prescription(1,1, "prescription1","pat1","doc1") );
         appointments.add(dummyAppointment);
         when(appointmentRepository.findByPatientName(anyString())).thenReturn(appointments);
-        List<Appointment> result = appointmentRepository.findByPatientName("ABC");
+        List<Appointment> result = appointmentRepository.findByPatientName("pat1");
         Assert.assertEquals(result.get(0).getAppointmentId(), dummyAppointment.getAppointmentId());
         Assert.assertEquals(result.get(0).getPatientName(), dummyAppointment.getPatientName());
         Assert.assertEquals(result.get(0).getDate(), dummyAppointment.getDate());
