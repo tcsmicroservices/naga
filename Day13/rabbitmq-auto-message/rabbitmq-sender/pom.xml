@@ -4,13 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.rama.rabbitmq</groupId>
-		<artifactId>fourth-rabbit-demo</artifactId>
+		<artifactId>rabbitmq-auto-message</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.rama.rabbitmq</groupId>
-	<artifactId>rabbitmq-demo-producer</artifactId>
+	<artifactId>rabbitmq-sender</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rabbitmq-demo-producer</name>
+	<name>rabbitmq-sender</name>
 	<description>Rabbitmq Demo producer project for Spring Boot</description>
 
 	<properties>

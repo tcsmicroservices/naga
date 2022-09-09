@@ -1,6 +1,6 @@
 package com.rama.rabbitmq.service;
 
-import com.rama.rabbitmq.model.Employee;
+import com.rama.rabbitmq.model.Message;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,10 +17,11 @@ public class RabbitMQSender {
   @Value("${rabbitmq.routingkey.name}")
   private String routingkey;
 
-  public void send(Employee company) {
-    rabbitTemplate.convertAndSend(exchange, routingkey, company);
-    System.out.println("Send msg = " + company);
+  public void send(Message msg) {
+    rabbitTemplate.convertAndSend(exchange, routingkey, msg);
+    System.out.println("Send msg = " + msg);
 
+  }
   }
 /*
   @RabbitListener(queues = "${rabbitmq.queue.name}")
@@ -28,4 +29,4 @@ public class RabbitMQSender {
     System.out.println("Recieved Message From RabbitMQ: " + employee);
   }*/
 
-}
+
