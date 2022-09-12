@@ -23,9 +23,9 @@ public class HosSecurity extends WebSecurityConfigurerAdapter{
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user123").password("{noop}password").roles("PATIENT").and()
-                .withUser("admin123").password("{noop}password").roles("DOCTOR").and().withUser("test123")
-                .password("{noop}password").roles("PATIENT").and().withUser("deepthi").password("{noop}password")
-                .roles("ADMIN");
+        auth.inMemoryAuthentication()
+                .withUser("patient").password("{noop}password").roles("PATIENT").and()
+                .withUser("doctor").password("{noop}password").roles("DOCTOR").and()
+                .withUser("deepthi").password("{noop}password").roles("ADMIN");
     }
 }

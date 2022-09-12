@@ -15,15 +15,15 @@ docker-compose -f docker-compose-mongo.yml down -d
 
 ...
 curl --location --request POST 'localhost:8083/patient/bookappointment' \
---header 'Authorization: Basic dXNlcjEyMzpwYXNzd29yZA==' \
+--header 'Authorization: Basic cGF0aWVudDpwYXNzd29yZA==' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=CD5B2A8BF6E2B9A28B0869010DB260D4' \
+--header 'Cookie: JSESSIONID=369D7B26541F430575B3C2EA016CE27A' \
 --data-raw '{
+"prescriptionId":"1",
 "appointmentId":"1",
+"description":"prescription1",
 "patientName":"pat1",
-"doctorName":"doc1",
-"date":"28-01-2022",
-"prescription":"null"
+"doctorName":"doc1"
 }'
 ...
 
@@ -31,8 +31,8 @@ curl --location --request POST 'localhost:8083/patient/bookappointment' \
 
 ...
 curl --location --request GET 'localhost:8083/patient/myappointments?patientName=pat1' \
---header 'Authorization: Basic dXNlcjEyMzpwYXNzd29yZA==' \
---header 'Cookie: JSESSIONID=CD5B2A8BF6E2B9A28B0869010DB260D4'
+--header 'Authorization: Basic cGF0aWVudDpwYXNzd29yZA==' \
+--header 'Cookie: JSESSIONID=369D7B26541F430575B3C2EA016CE27A'
 ...
 
 /prescription/save
@@ -40,9 +40,9 @@ curl --location --request GET 'localhost:8083/patient/myappointments?patientName
 ...
 
 curl --location --request POST 'localhost:8083/prescription/save' \
---header 'Authorization: Basic YWRtaW4xMjM6cGFzc3dvcmQ=' \
+--header 'Authorization: Basic ZG9jdG9yOnBhc3N3b3Jk' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=09654178888C6ED4C3398D42115A294D' \
+--header 'Cookie: JSESSIONID=FB5C4927957E31FF696F39663E885505' \
 --data-raw '{
 "prescriptionId":"1",
 "appointmentId":"1",
@@ -55,15 +55,15 @@ curl --location --request POST 'localhost:8083/prescription/save' \
 /prescription/view
 ...
 curl --location --request GET 'localhost:8083/prescription/view?patientName=pat1' \
---header 'Authorization: Basic dXNlcjEyMzpwYXNzd29yZA==' \
---header 'Cookie: JSESSIONID=263A0E83380A45C8A71DCF958A746B1C'
+--header 'Authorization: Basic cGF0aWVudDpwYXNzd29yZA==' \
+--header 'Cookie: JSESSIONID=FB5C4927957E31FF696F39663E885505'
 ...
 
 /doctor/appointments
 ...
 curl --location --request GET 'localhost:8083/doctor/appointments?doctorName=doc1' \
---header 'Authorization: Basic YWRtaW4xMjM6cGFzc3dvcmQ=' \
---header 'Cookie: JSESSIONID=263A0E83380A45C8A71DCF958A746B1C'
+--header 'Authorization: Basic ZG9jdG9yOnBhc3N3b3Jk' \
+--header 'Cookie: JSESSIONID=468C1F092C16B75CC79058FAF327C15F'
 ...
 
 # swagger
