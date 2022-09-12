@@ -21,8 +21,8 @@ public class PrescriptionController {
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public List<Prescription> view(@RequestParam String name) {
-        return prescriptionRepository.findByPatientName(name);
+    public List<Prescription> view(@RequestParam String patientName) {
+        return prescriptionRepository.findByPatientName(patientName);
     }
 
 

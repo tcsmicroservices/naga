@@ -23,7 +23,7 @@ curl --location --request POST 'localhost:8083/patient/bookappointment' \
 "patientName":"pat1",
 "doctorName":"doc1",
 "date":"28-01-2022",
-"presciption":"null"
+"prescription":"null"
 }'
 ...
 
@@ -42,11 +42,11 @@ curl --location --request GET 'localhost:8083/patient/myappointments?patientName
 curl --location --request POST 'localhost:8083/prescription/save' \
 --header 'Authorization: Basic YWRtaW4xMjM6cGFzc3dvcmQ=' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=CD5B2A8BF6E2B9A28B0869010DB260D4' \
+--header 'Cookie: JSESSIONID=09654178888C6ED4C3398D42115A294D' \
 --data-raw '{
 "prescriptionId":"1",
 "appointmentId":"1",
-"description":"jaundice disease prescription",
+"description":"prescription1",
 "patientName":"pat1",
 "doctorName":"doc1"
 }'
@@ -54,12 +54,16 @@ curl --location --request POST 'localhost:8083/prescription/save' \
 
 /prescription/view
 ...
-curl --location --request GET 'localhost:8083/prescription/view?name=pat1'
+curl --location --request GET 'localhost:8083/prescription/view?patientName=pat1' \
+--header 'Authorization: Basic dXNlcjEyMzpwYXNzd29yZA==' \
+--header 'Cookie: JSESSIONID=263A0E83380A45C8A71DCF958A746B1C'
 ...
 
 /doctor/appointments
 ...
-curl --location --request GET 'localhost:8083/doctor/appointments?doctorName=doc1'
+curl --location --request GET 'localhost:8083/doctor/appointments?doctorName=doc1' \
+--header 'Authorization: Basic YWRtaW4xMjM6cGFzc3dvcmQ=' \
+--header 'Cookie: JSESSIONID=263A0E83380A45C8A71DCF958A746B1C'
 ...
 
 # swagger

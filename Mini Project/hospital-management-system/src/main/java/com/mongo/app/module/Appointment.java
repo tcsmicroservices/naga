@@ -1,5 +1,4 @@
 package com.mongo.app.module;
-
 public class Appointment {
 
     Integer appointmentId;
