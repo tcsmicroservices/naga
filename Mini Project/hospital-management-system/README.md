@@ -17,13 +17,13 @@ docker-compose -f docker-compose-mongo.yml down -d
 curl --location --request POST 'localhost:8083/patient/bookappointment' \
 --header 'Authorization: Basic cGF0aWVudDpwYXNzd29yZA==' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JSESSIONID=369D7B26541F430575B3C2EA016CE27A' \
+--header 'Cookie: JSESSIONID=7EA72A8F5B367C4058D790FC7B10A817' \
 --data-raw '{
-"prescriptionId":"1",
 "appointmentId":"1",
-"description":"prescription1",
 "patientName":"pat1",
-"doctorName":"doc1"
+"doctorName":"doc1",
+"date":"7 sept",
+"prescription":null
 }'
 ...
 
