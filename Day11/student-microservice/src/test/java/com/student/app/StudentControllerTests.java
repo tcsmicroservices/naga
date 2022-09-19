@@ -57,6 +57,48 @@ public class StudentControllerTests {
 		assertEquals("{}", result);
 	}
 
+	@Test
+	public void testStudentPost() throws Exception {
+		Student student= createStudent("studentnm1","rollno1","std1");
+		ResultActions responseEntity  = mockMvc.perform(post(posturl).contentType(MediaType.APPLICATION_JSON)
+				.content(asJsonString(student)).accept(MediaType.APPLICATION_JSON));
+		responseEntity.andExpect(status().isOk());
+		ObjectMapper mapper = new ObjectMapper();
+		Student result = mapper.readValue(responseEntity.andReturn().getResponse().getContentAsString(),
+				new TypeReference<Student>() {
+				});
+m		assertEquals("studentnm1", result.getName());
+		assertEquals("std1", result.getStd());
+		assertEquals("rollno1", result.getRollNo());
+	}
+
+	@Test
+	public void testStudentupdate() throws Exception {
+		Student student= createStudent("studentnm1","rollno1","std1");
+		ResultActions responseEntity  = mockMvc.perform(put(puturl)
+				.param("name","studentnm2").param("std","LKG"));
+		responseEntity.andExpect(status().isOk());
+		ObjectMapper mapper = new ObjectMapper();
+		Student result = mapper.readValue(responseEntity.andReturn().getResponse().getContentAsString(),
+				new TypeReference<Student>() {
+				});
+		assertEquals("studentnm2", result.getName());
+		assertEquals("LKG", result.getStd());
+		assertEquals("rollno1", result.getRollNo());
+	}
+
+	@Test
+	public void testStudentDelete() throws Exception {
+		ResultActions responseEntity  = mockMvc.perform(delete(deleteurl).param("name","studentnm2"));
+		responseEntity.andExpect(status().isOk());
+		ObjectMapper mapper = new ObjectMapper();
+		String result=responseEntity.andReturn().getResponse().getContentAsString();
+
+		assertEquals("studentnm2", result);
+
+	}
+
+
 	private ResultActions processApiRequest(String api, HttpMethod methodType, String name, Student student) {
 		ResultActions response = null;
 		try {
