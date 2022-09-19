@@ -1,6 +1,0 @@
-version: '3.2'
-services:
-  spring-boot-calculator:
-    image: deepthi007/spring-boot-calculator:0.0.1
-    ports:
-      - "8080:8080"
